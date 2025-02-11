@@ -1,0 +1,17 @@
+version: '3.8'
+services:
+  app:
+    build: 
+      context: .
+      dockerfile: dockerfile
+    image: 'my-app:slim'
+    ports:
+        - "5000:5000"
+    depends_on:
+        - db
+        - redis
+    env_file:
+      - ./env/app.env
+    volumes:
+        - ./app.py:/app/app.py
+        - .:/app
